@@ -63,7 +63,6 @@ class Queue extends React.Component {
   };
 
   isFull() {
-    console.log('Checking if full with rear pointer: ', this.state.rear)
     if (this.state.rear === this.state.size) {
       this.setState((state) => ({
         ...state,
@@ -102,6 +101,11 @@ class Queue extends React.Component {
         ...state,
         error: 'Data is not valid. Please input valid data.',
         message: '',
+      }))
+    } else if(this.isFull()) {
+      this.setState((state) => ({
+        ...state,
+        message: 'Queue is full. Cannot add a new item.'
       }))
     }
   }
