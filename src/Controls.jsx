@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Controls = ({ handleEnqueue, handleDequeue }) => {
+const Controls = ({ handleEnqueue, handleDequeue, handleIsEmpty, handleIsFull }) => {
   const [val, setVal] = useState("") 
   const handleInputChange = (e) => {
     const v = e.target.value;
@@ -17,10 +17,10 @@ const Controls = ({ handleEnqueue, handleDequeue }) => {
         <button onClick={handleDequeue}>Dequeue</button>
       </div>
       <div className="control">
-        <button>IsEmpty</button>
+        <button onClick={handleIsEmpty}>IsEmpty</button>
       </div>
       <div className="control">
-        <button>IsFull</button>
+        <button onClick={handleIsFull}>IsFull</button>
       </div>
     </div>
   )

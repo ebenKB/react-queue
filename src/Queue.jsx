@@ -14,6 +14,7 @@ class Queue extends React.Component {
       isEmpty: false,
       isFull: false,
       error:  null,
+      message: '',
     }
     
   }
@@ -32,6 +33,34 @@ class Queue extends React.Component {
     }
     return false;
   }
+
+  handleIsEmpty = () => {
+    if (this.isEmpty()) {
+      this.setState((state) => ({
+        ...state,
+        message : 'The Queue is empty'
+      }))
+    } else {
+      this.setState((state) => ({
+        ...state,
+        message: 'Not Empty'
+      }))
+    }
+  }
+
+  handleIsFull = () => {
+    if (this.isFull()) {
+      this.setState((state) => ({
+        ...state,
+        message: 'The Queue is full'
+      }))
+    } else {
+      this.setState((state) => ({
+        ...state,
+        message: 'Not Full'
+      }))
+    }
+  };
 
   isFull() {
     console.log('Checking if full with rear pointer: ', this.state.rear)
@@ -53,7 +82,6 @@ class Queue extends React.Component {
 
   enQueue(data) {
     if(!this.isFull() && data) {
-      console.log('We want to enqueue with this data', data)
       const nData = this.state.data;
       nData[this.state.rear] = data;
 
@@ -67,11 +95,13 @@ class Queue extends React.Component {
         data:[...nData],
         error: null,
         isFull: false,
+        message: '',
       }))
     } else if(!data) {
       this.setState((state) => ({
         ...state,
-        error: 'Data is not valid. Please input valid data.'
+        error: 'Data is not valid. Please input valid data.',
+        message: '',
       }))
     }
   }
@@ -97,6 +127,12 @@ class Queue extends React.Component {
         rear: (state.rear - 1),
         data: [...nData.filter((x) => x !== null)],
         isFull: false,
+        message: '',
+      }))
+    } else {
+      this.setState((state) => ({
+        ...state,
+        message: 'Cannot remove item. Queue is empty.'
       }))
     }
   }
@@ -113,13 +149,14 @@ class Queue extends React.Component {
   }
 
   render() {
-    const { size, isFull, rear, error, front } = this.state;
+    const { size, isFull, rear, error, front, message } = this.state;
     return (
       <div className="queue_wrapper">
        <div className="q-title">
         <h1>Queue Abstract Data Type</h1>
         <div className="err-input">
           {error}
+          {/* {message} */}
         </div>
        </div>
        <div className="custom-input">
@@ -133,15 +170,16 @@ class Queue extends React.Component {
           <Controls 
             handleEnqueue = {(data) => this.enQueue(data)} 
             handleDequeue = {() => this.deQueue()}
+            handleIsEmpty={this.handleIsEmpty}
+            handleIsFull = {this.handleIsFull}
           />
         </div>
         <h3>Current Items {this.state.rear}</h3>
         <h3>Remaining Items {this.state.size - this.state.rear}</h3>
-        {isFull && (
-          <div className="q-alert">{isFull && (
-            <span>Queue is full</span>
-            )}
-        </div>
+        {message && (
+          <div className="q-alert">
+            <span>{message}</span>
+          </div>
         )}
         <Legend />
       </div>
