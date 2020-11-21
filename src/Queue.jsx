@@ -149,7 +149,7 @@ class Queue extends React.Component {
   }
 
   render() {
-    const { size, isFull, rear, error, front, message } = this.state;
+    const { size, rear, error, front, message } = this.state;
     return (
       <div className="queue_wrapper">
        <div className="q-title">
