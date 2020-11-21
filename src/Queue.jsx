@@ -21,7 +21,7 @@ class Queue extends React.Component {
   componentDidMount() {
     console.log(this.state.isEmpty, this.state.isFull)
   }
-  
+
   isEmpty() {
     if (this.state.rear === this.state.front) {
       this.setState((state) => ({
@@ -113,7 +113,7 @@ class Queue extends React.Component {
   }
 
   render() {
-    const { size, isEmpty, isFull, rear, error, front } = this.state;
+    const { size, isFull, rear, error, front } = this.state;
     return (
       <div className="queue_wrapper">
        <div className="q-title">
