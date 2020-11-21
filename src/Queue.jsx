@@ -18,6 +18,10 @@ class Queue extends React.Component {
     
   }
 
+  componentDidMount() {
+    console.log(this.state.isEmpty, this.state.isFull)
+  }
+  
   isEmpty() {
     if (this.state.rear === this.state.front) {
       this.setState((state) => ({
@@ -74,11 +78,16 @@ class Queue extends React.Component {
 
   deQueue() {
     if(!this.isEmpty()) {
-      const val = this.state.data[this.state.front]
+      // const val = this.state.data[this.state.front]
 
       // shift items to the front
       for(let i =0; i< this.state.rear; i++) {
-        this.state.data[i] = this.state.data[i + 1]
+        const newData = this.state;
+        newData.data[i] = newData.data[i + 1]
+        this.setState((state) => ({
+          ...state,
+          ...newData
+        }))
       }
 
       const nData = this.state.data;
