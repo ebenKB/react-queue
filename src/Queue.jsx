@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Item from './Item';
 import Controls from './Controls';
 import Legend from './Legend';
@@ -115,7 +115,7 @@ class Queue extends React.Component {
        </div>
        <div className="custom-input">
           <label htmlFor="size" name="size">Queue size </label>
-          <input type="number" min={0} value={size} onChange={this.handleInputChange} />
+          <input type="number" min={1} value={size} onChange={this.handleInputChange} />
        </div>
        <div className="items_wrapper">
         {this.state.data.map((d, key) => <Item key={key} isRear={key === rear} isFront={key === front}>{d}</Item>)}

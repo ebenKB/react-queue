@@ -42,12 +42,23 @@ body {
   position: relative;
 }
 
+.rear_item::before {
+  content: "current pointer";
+  min-width: 100px;
+  height: 30px;
+  position: absolute;
+  font-size: 0.8rem;
+  bottom: -45px;
+  color: inherit;
+  font-weight: 300;
+}
+
 .rear_item::after {
   content: "";
   width: 30px;
   height: 30px;
   display: block;
-  background: #76C750;
+  background: inherit;
   position: absolute;
   left: 18px;
   transform: rotate(45deg);

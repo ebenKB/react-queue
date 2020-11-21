@@ -10,7 +10,7 @@ const Controls = ({ handleEnqueue, handleDequeue }) => {
   return (
     <div className="queue_controls">
       <div className="control btn-group">
-        <input type="number" name="value" onChange={handleInputChange}  placeholder="Enter item to add" />
+        <input type="number" min={1} name="value" onChange={handleInputChange}  placeholder="Enter number to add" />
         <button onClick={() => handleEnqueue(val)}>Enqueue</button>
       </div>
       <div className="control">
